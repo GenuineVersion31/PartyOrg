@@ -1,0 +1,97 @@
+/*1
+  hover的浮动demo
+                ——CSS3教程
+*/
+.btn-hover {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn-hover span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-hover span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn-hover:hover span {
+  padding-right: 25px;
+}
+
+.btn-hover:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* 3
+    文字
+            --from人民网Korea版
+*/
+.w1000{ width:1000px;}
+.w310 {
+  width: 310px;
+}
+.ko_column_2 ul.list_14{ padding-bottom:10px;}
+.ko_column_2 h2{ border-bottom:2px solid #89a6e2}
+.ko_column_2 h3{ font-size:16px; color:#456ec2; font-weight:bold}
+.mt20{margin-top:20px;}
+.w490{ width:490px;}
+.fl{float:left;}
+.fr{float:right;}
+.mt15{margin-top:15px;}
+
+.line1,.line2,.line3{ width:100%; height:1px; overflow:hidden; background:#dddddd;}
+.line2{ margin:24px auto 25px auto}
+.line3{ margin:14px auto 15px auto}
+.list_14 li{background:url("../img/dot.png") no-repeat 5px 14px;padding-left:15px;font-size:14px; line-height:30px; }
+.list_14 li em{ color:#ccc; margin-left:5px;}
+.list_14b li{font-size:14px; line-height:30px; background:none; padding-left:0; }
+.blue,.blue a:link,.blue a:hover,.blue a:visited{ color:#D02E2F;}
+.ko_1 ul.list_14{ float:left; width:60%;}
+.title h1{  font-size:36px; display:block; text-align:center; line-height:38px; padding:10px 0;font-family:'맑은 고딕','돋움';}
+.title p{ display:block; text-align:center; line-height:30px; font-size:12px;}
+.title p a{ margin:auto 10px}
+.column_2 { width:1000px;}
+.column_2 .left{ float:left;}
+.column_2 .right{ float:right;}
+.column_3 {
+  width: 1000px;
+}
+.column_3 .left {
+  float: left;
+}
+.column_3 .center {
+  float: left;
+  margin-left: 35px;
+}
+.column_3 .rightl {
+  float: right;
+}
+.center{ float:left; margin-left:35px;}
+.img_box {
+  padding-bottom: 15px;
+}
+.bgc_gray {
+  background: #f8f8f8;
+}
+
+

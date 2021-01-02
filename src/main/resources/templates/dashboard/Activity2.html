@@ -1,0 +1,477 @@
+<!doctype html >
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>活动</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="assets/css/flag-icon.min.css"><link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link href="assets/weather/css/weather-icons.css" rel="stylesheet" />
+    <link href="assets/calendar/fullcalendar.css" rel="stylesheet" />
+
+    <link href="assets/css/charts/chartist.min.css" rel="stylesheet">
+    <link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff!important;
+        }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1  {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding:3px;
+        }
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px ;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5  {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart{
+            height: 160px;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/diff"><i class="menu-icon fa fa-laptop"></i>主页 </a>
+                </li>
+                <li class="menu-title" >账号</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>账号管理</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-id-card-o"></i><a href="/userlist2">基本信息</a></li>
+                        <li><i class="fa fa-exclamation-triangle"></i><a href="/putforward">入党申请</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>发布</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-spinner"></i><a href="/activity2">党建活动</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+        <div class="top-left">
+            <div class="navbar-header">
+                <!--                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>-->
+                <!--                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>-->
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div class="top-right">
+            <div class="header-menu">
+                <div class="header-left">
+                    <button class="search-trigger"><i class="fa fa-search"></i></button>
+                    <div class="form-inline">
+                        <form class="search-form">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="bi bi-house-door" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 01.708 0l6 6a.5.5 0 01.146.354v7a.5.5 0 01-.5.5H9.5a.5.5 0 01-.5-.5v-4H7v4a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5v-7a.5.5 0 01.146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 01.5-.5h3a.5.5 0 01.5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- /#header -->
+    <!-- Content -->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <div class="col-md-12">
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title" v-if="headerText">Typography</strong>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="typo-headers">
+                            <h1 class="pb-2 display-4">Very Important Information H1</h1>
+                            <h2 class="pb-2 display-5">Sections &amp; Modal Names H2</h2>
+                            <h3 class="pb-2 display-5">Articles &amp; Block Headings H3</h3>
+                            <h4 class="pb-2 display-5">Random Tiny Heading H4</h4>
+                            <h5 class="pb-2 display-5">Random Tiny Heading H5</h5>
+                            <h6 class="pb-4 display-5">Random Tiny Heading H6</h6>
+                        </div>
+                        <div class="typo-articles">
+                            <p>
+                                The unique stripes of zebras make them one of the animals most familiar to people. They occur in a variety of habitats, such as grasslands, savannas, <span class="bg-flat-color-1 text-light">woodlands</span>, thorny scrublands, <span class="clickable-text">mountains</span>
+                                , and coastal hills. However, various anthropogenic factors have had a severe impact on zebra populations, in particular hunting for skins and habitat destruction. Grévy's zebra and the mountain <mark>highlighted text</mark> zebra are endangered.</p>
+                            <blockquote class="blockquote mt-3 text-right">
+                                <p>
+                                    Blockquotes. However, various anthropogenic factors have had a severe impact on zebra populations, in particular hunting for skins. </p>
+                                <footer class="blockquote-footer">Jefferey Lebowski</footer>
+                            </blockquote>
+                            <p>
+                                lthough zebra species may have overlapping ranges, they do not interbreed. In captivity, plains zebras have been crossed with mountain zebras. The hybrid foals <span class="bg-flat-color-1 text-light">selected text</span> lacked a dewlap and resembled their
+                            </p>
+                        </div>
+                        <div class="vue-lists">
+                            <h2 class="mb-4">Lists</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>Unordered</h3>
+                                    <ul>
+                                        <li>
+                                            A wide variety of hypotheses have been proposed to account for the evolution of the striking stripes of zebras.
+                                        </li>
+                                        <li>The more traditional of these (1 and 2, below) relate to camouflage.</li>
+                                        <li>The vertical striping may help the zebra hide in the grass by disrupting its outline.</li>
+                                        <li>
+                                            In addition, even at moderate distances, the striking striping merges to an apparent grey.
+                                            <ul class="vue-list-inner">
+                                                <li>However, the camouflage has been contested with arguments that most of a zebra's predator.</li>
+                                                <li>Such as lions and hyenas cannot see well at a distance.</li>
+                                                <li>More likely to have smelled or heard a zebra.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Before seeing it from a distance, especially at night.</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <div>
+                                        <h3>Ordered</h3>
+                                        <ol class="vue-ordered">
+                                            <li>
+                                                A wide variety of hypotheses have been proposed to account for the evolution of the striking stripes of zebras.
+                                            </li>
+                                            <li>The more traditional of these (1 and 2, below) relate to camouflage.</li>
+                                            <li>The vertical striping may help the zebra hide in the grass by disrupting its outline.</li>
+                                            <li>
+                                                In addition, even at moderate distances, the striking striping merges to an apparent grey.
+                                                <ul class="vue-list-inner">
+                                                    <li>However, the camouflage has been contested with arguments that most of a zebra's predator.
+                                                    </li>
+                                                    <li>Such as lions and hyenas cannot see well at a distance.</li>
+                                                    <li>More likely to have smelled or heard a zebra.</li>
+                                                </ul>
+                                            </li>
+                                            <li>Before seeing it from a distance, especially at night.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vue-misc">
+                            <h2 class="display-5 my-3">Misc</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>Address</h3>
+                                    <address class="mt-3">
+                                        <strong>SJØNNA</strong><br>
+                                        Nezalezhnasti Ave, 13 - 28A<br>
+                                        Minsk, Belarus, 220141<br>
+                                        +375 29 319-53-98<br>
+                                        <br>
+                                        <b>Vasili Savitski</b><br>
+                                        <a href="mailto">hello@examplemail.com</a>
+
+                                    </address>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="mb-3">Well</h3>
+                                    <div class="jumbotron">
+                                        Zebras have excellent eyesight. It is believed that they can see in color. Like most ungulates, the zebra's eyes are on the sides of its head, giving it a wide field of view.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- .animated -->
+    </div>
+    <!-- /.content -->
+    <div class="clearfix"></div>
+    <!-- Footer -->
+
+    <!-- /.site-footer -->
+</div>
+<!-- /#right-panel -->
+
+<script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
+<script src="assets/js/lib/chartist/chartist.min.js"></script>
+<script src="assets/js/lib/chartist/chartist-plugin-legend.js"></script>
+<script src="assets/js/lib/flot-chart/jquery.flot.js"></script>
+<script src="assets/js/lib/flot-chart/jquery.flot.pie.js"></script>
+<script src="assets/js/lib/flot-chart/jquery.flot.spline.js"></script>
+<script src="assets/weather/js/jquery.simpleWeather.min.js"></script>
+<script src="assets/weather/js/weather-init.js"></script>
+<script src="assets/js/lib/moment/moment.js"></script>
+<script src="assets/calendar/fullcalendar.min.js"></script>
+<script src="assets/calendar/fullcalendar-init.js"></script>cript>
+<script src="assets/js/init/weather-init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+<script src="assets/js/init/fullcalendar-init.js"></script>
+
+<!--Local Stuff-->
+<script>
+    jQuery(document).ready(function($) {
+        "use strict";
+
+        // Pie chart flotPie1
+        var piedata = [
+            { label: "Desktop visits", data: [[1,32]], color: '#5c6bc0'},
+            { label: "Tab visits", data: [[1,33]], color: '#ef5350'},
+            { label: "Mobile visits", data: [[1,35]], color: '#66bb6a'}
+        ];
+
+        $.plot('#flotPie1', piedata, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    innerRadius: 0.65,
+                    label: {
+                        show: true,
+                        radius: 2/3,
+                        threshold: 1
+                    },
+                    stroke: {
+                        width: 0
+                    }
+                }
+            },
+            grid: {
+                hoverable: true,
+                clickable: true
+            }
+        });
+        // Pie chart flotPie1  End
+        // cellPaiChart
+        var cellPaiChart = [
+            { label: "Direct Sell", data: [[1,65]], color: '#5b83de'},
+            { label: "Channel Sell", data: [[1,35]], color: '#00bfa5'}
+        ];
+        $.plot('#cellPaiChart', cellPaiChart, {
+            series: {
+                pie: {
+                    show: true,
+                    stroke: {
+                        width: 0
+                    }
+                }
+            },
+            legend: {
+                show: false
+            },grid: {
+                hoverable: true,
+                clickable: true
+            }
+
+        });
+        // cellPaiChart End
+        // Line Chart  #flotLine5
+        var newCust = [[0, 3], [1, 5], [2,4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
+
+        var plot = $.plot($('#flotLine5'),[{
+                data: newCust,
+                label: 'New Data Flow',
+                color: '#fff'
+            }],
+            {
+                series: {
+                    lines: {
+                        show: true,
+                        lineColor: '#fff',
+                        lineWidth: 2
+                    },
+                    points: {
+                        show: true,
+                        fill: true,
+                        fillColor: "#ffffff",
+                        symbol: "circle",
+                        radius: 3
+                    },
+                    shadowSize: 0
+                },
+                points: {
+                    show: true,
+                },
+                legend: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                }
+            });
+        // Line Chart  #flotLine5 End
+        // Traffic Chart using chartist
+        if ($('#traffic-chart').length) {
+            var chart = new Chartist.Line('#traffic-chart', {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                series: [
+                    [0, 18000, 35000,  25000,  22000,  0],
+                    [0, 33000, 15000,  20000,  15000,  300],
+                    [0, 15000, 28000,  15000,  30000,  5000]
+                ]
+            }, {
+                low: 0,
+                showArea: true,
+                showLine: false,
+                showPoint: false,
+                fullWidth: true,
+                axisX: {
+                    showGrid: true
+                }
+            });
+
+            chart.on('draw', function(data) {
+                if(data.type === 'line' || data.type === 'area') {
+                    data.element.animate({
+                        d: {
+                            begin: 2000 * data.index,
+                            dur: 2000,
+                            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                            to: data.path.clone().stringify(),
+                            easing: Chartist.Svg.Easing.easeOutQuint
+                        }
+                    });
+                }
+            });
+        }
+        // Traffic Chart using chartist End
+        //Traffic chart chart-js
+        if ($('#TrafficChart').length) {
+            var ctx = document.getElementById( "TrafficChart" );
+            ctx.height = 150;
+            var myChart = new Chart( ctx, {
+                type: 'line',
+                data: {
+                    labels: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" ],
+                    datasets: [
+                        {
+                            label: "Visit",
+                            borderColor: "rgba(4, 73, 203,.09)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(4, 73, 203,.5)",
+                            data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
+                        },
+                        {
+                            label: "Bounce",
+                            borderColor: "rgba(245, 23, 66, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(245, 23, 66,.5)",
+                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                            data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
+                        },
+                        {
+                            label: "Targeted",
+                            borderColor: "rgba(40, 169, 46, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(40, 169, 46, .5)",
+                            pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    }
+
+                }
+            } );
+        }
+        //Traffic chart chart-js  End
+        // Bar Chart #flotBarChart
+        $.plot("#flotBarChart", [{
+            data: [[0, 18], [2, 8], [4, 5], [6, 13],[8,5], [10,7],[12,4], [14,6],[16,15], [18, 9],[20,17], [22,7],[24,4], [26,9],[28,11]],
+            bars: {
+                show: true,
+                lineWidth: 0,
+                fillColor: '#ffffff8a'
+            }
+        }], {
+            grid: {
+                show: false
+            }
+        });
+        // Bar Chart #flotBarChart End
+    });
+</script>
+</body>
+</html>

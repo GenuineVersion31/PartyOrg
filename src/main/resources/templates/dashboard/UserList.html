@@ -1,0 +1,232 @@
+<!doctype html >
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人信息</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/normalize.css">
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/flag-icon.min.css"><link rel="stylesheet" href="../../static/dashboard/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="../../static/dashboard/assets/css/style.css">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link href="../../static/dashboard/assets/weather/css/weather-icons.css" rel="stylesheet" />
+    <link href="../../static/dashboard/assets/calendar/fullcalendar.css" rel="stylesheet" />
+
+    <link href="../../static/dashboard/assets/css/charts/chartist.min.css" rel="stylesheet">
+    <link href="../../static/dashboard/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff!important;
+        }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1  {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding:3px;
+        }
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px ;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5  {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart{
+            height: 160px;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/diff"><i class="menu-icon fa fa-laptop"></i>主页 </a>
+                </li>
+                <li class="menu-title" >账号</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>账号管理</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-id-card-o"></i><a href="/userlist">个人信息</a></li>
+                        <li><i class="fa fa-bars"></i><a  href="/userslist">用户信息</a></li>
+                        <li><i class="fa fa-exclamation-triangle"></i><a href="/authority">权限控制</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="menu-icon fa fa-table"></i>入党名单</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-id-badge"></i><a href="/partygroup">党员名单</a>
+                        <li><i class="fa fa-puzzle-piece"></i><a href="/readygroup2">预备党员</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>发布</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-spinner"></i><a href="/activity">党建活动</a></li>
+                        <li><i class="fa fa-fire"></i><a href="/portercontroll">公告控制</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+        <div class="top-left">
+            <div class="navbar-header">
+                <!--                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>-->
+                <!--                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>-->
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div class="top-right">
+            <div class="header-menu">
+                <div class="header-left">
+                    <button class="search-trigger"><i class="fa fa-search"></i></button>
+                    <div class="form-inline">
+                        <form class="search-form">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="bi bi-house-door" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 01.708 0l6 6a.5.5 0 01.146.354v7a.5.5 0 01-.5.5H9.5a.5.5 0 01-.5-.5v-4H7v4a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5v-7a.5.5 0 01.146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 01.5-.5h3a.5.5 0 01.5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- /#header -->
+    <!-- Content -->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Basic Form</strong> Elements
+                </div>
+                <div class="card-body card-block">
+                    <form action="/reset" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label class=" form-control-label">用户名</label></div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static" th:text="${user.getUsername()}">用户名</p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">密码</label></div>
+                            <div class="col-12 col-md-9"><input type="text" th:value="${user.getPassword()}" id="text-input" name="text-input" placeholder="密码" disabled="" class="form-control"><small class="form-text text-muted">This is your paasword</small></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">姓名</label></div>
+                            <div class="col-12 col-md-9"><input type="text"  id="email-input" name="name" th:value="${detail.getName()}" placeholder="姓名" disabled="" class="form-control"><small class="form-text text-muted">Please enter your name</small></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">民族</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="password-input" name="race" th:value="${detail.getRace()}" placeholder="民族" disabled="" class="form-control"><small class="form-text text-muted">Please enter real information</small></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="disabled-input" class=" form-control-label">学号</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="disabled-input" name="classnumber" th:value="${detail.getClassnumber()}" placeholder="学号" disabled="" class="form-control"><small class="form-text text-muted">Please enter your number in school</small></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="disabled-input" class=" form-control-label">班级</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="banji" name="major" th:value="${detail.getMajor()}" placeholder="学班级号" disabled="" class="form-control"></div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-dot-circle-o"></i> change
+                            </button>
+                        </div>
+                    </form></div>
+            </div>
+        </div>
+        <!-- .animated -->
+    </div>
+    <!-- /.content -->
+    <div class="clearfix"></div>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+            <div class="row">
+            </div>
+        </div>
+    </footer>
+    <!-- /.site-footer -->
+</div>
+<!-- /#right-panel -->
+
+<script src="../../static/dashboard/assets/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="../../static/dashboard/assets/js/popper.min.js"></script>
+<script src="../../static/dashboard/assets/js/plugins.js"></script>
+<script src="../../static/dashboard/assets/js/main.js"></script>
+<script src="../../static/dashboard/assets/js/lib/chart-js/Chart.bundle.js"></script>
+<script src="../../static/dashboard/assets/js/lib/chartist/chartist.min.js"></script>
+<script src="../../static/dashboard/assets/js/lib/chartist/chartist-plugin-legend.js"></script>
+<script src="../../static/dashboard/assets/js/lib/flot-chart/jquery.flot.js"></script>
+<script src="../../static/dashboard/assets/js/lib/flot-chart/jquery.flot.pie.js"></script>
+<script src="../../static/dashboard/assets/js/lib/flot-chart/jquery.flot.spline.js"></script>
+<script src="../../static/dashboard/assets/weather/js/jquery.simpleWeather.min.js"></script>
+<script src="../../static/dashboard/assets/weather/js/weather-init.js"></script>
+<script src="../../static/dashboard/assets/js/lib/moment/moment.js"></script>
+<script src="../../static/dashboard/assets/calendar/fullcalendar.min.js"></script>
+<script src="../../static/dashboard/assets/calendar/fullcalendar-init.js"></script>cript>
+<script src="../../static/dashboard/assets/js/init/weather-init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+
+<!--Local Stuff-->
+
+</body>
+</html>
